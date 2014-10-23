@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>CMU Prints</title>
+    </head>
+
+    <body>
+        <h1>CMU Prints says...</h1>
+        hello world!<br />
+
+        {% if printers %}
+        <ul>
+            {% for printer in printers %}
+                <li> {{printer.name}} </li>
+                <!--need to get Jenna and Clark to place these on the map--!>
+            {% endfor %}
+        </ul>
+
+        {% else %}
+        <strong> Sorry, no printers yet! </strong>
+        {% endif %}
+        <a href="/index/about/">About</a><br />
+        {% load staticfiles %}
+        <img src="{% static "CMU_Map.jpg" %}" alt="My image"/ width=1000>
+    </body>
+
+</html>
