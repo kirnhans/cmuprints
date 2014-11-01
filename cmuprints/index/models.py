@@ -1,12 +1,84 @@
 from django.db import models
+from jsonTest import *
+import urllib2
+import json
+import string
 
-# Create your models here.
-class Printer():
-    def __init__(self):
-        self.name="Test"
-        self.id=3
-    #need to use JSON here to create printer
+
+
+class PrinterList(models.Model):
+    plist=[]
+
+Printers = PrinterList()
+
+def getInfo():
+    info = urllib2.urlopen('http://198.211.113.33:3000/printers')
+    str_info = ''
+    for line in info:
+        str_info += line
+    return str_info
+
+class Printer(object):
+    def __init__(self, name):
+        self.parseName(name)
+        self.status = None
+        self.error = None
+        self.icon = None
+
+    def parseName(self, name):
+        start = name.find('-')
+        if start == -1:
+            self.name = "Name Error"
+        else:
+            name = name[start+2:]
+            if name.endswith("B&W"):
+                self.name = name[:len(name)-len("B&W")]
+                self.color = False
+            else:
+                self.name = name[:len(name)-len("Color")]
+                self.color = True
+
+    def __repr__(self):
+        return "%s: %s (%s)" % (self.name, self.icon, self.error)
+        
+    def setIcon(self, msg):
+        if msg == "go.gif":
+            status = "available"
+        elif msg == "yield.gif":
+            status = "warning"
+        elif msg == "stop.gif":
+            status = "not working"
+        else:
+            status = "unknown"
+        self.icon = status
+    def getIcon(self):
+        return self.icon
     
-class Printer_List(models.Model):
-    def li(self):
-        return [Printer()]
+    def setStatus(self, msg):
+        self.status = msg
+    def getStatus(self):
+        return self.status
+
+    def setErrorMessage(self, msg):
+        self.error = msg
+    def getErrorMessage(self):
+        return self.error
+
+
+class MyDecoder(json.JSONDecoder):
+    def __init__(self):
+        json.JSONDecoder.__init__(self, object_hook=self.dict_to_object)
+
+    def dict_to_object(self, d):
+        if 'name' in d:
+            printer = Printer(d.pop('name'))
+            if 'ready' in d:
+                printer.setStatus(d.pop('ready'))
+            if 'icon' in d:
+                printer.setIcon(d.pop('icon'))
+            if 'status' in d:
+                printer.setErrorMessage(d.pop('status'))
+            Printers.plist.append(printer)
+
+encoded_object = getInfo()
+myobj_instance = MyDecoder().decode(encoded_object)
