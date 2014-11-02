@@ -12,7 +12,10 @@
         {% if printers %}
         <ul>
             {% for printer in printers %}
-                <li> {{printer.name}} </li>
+                {%if printer.status.find("ready")==-1 %}
+                    <li> <font color="red">{{printer.name}} </font></li>
+                {%else%}
+                    <li> <font color="green">{{printer.name}} </font></li>
                 <!--need to get Jenna and Clark to place these on the map--!>
             {% endfor %}
         </ul>
