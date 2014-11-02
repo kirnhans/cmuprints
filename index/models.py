@@ -87,4 +87,4 @@ encoded_object = getInfo()
 myobj_instance = MyDecoder().decode(encoded_object)
 
 for printer in Printers.plist:
-    print printer.status.find("ready")
+    print printer.status

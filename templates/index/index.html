@@ -12,7 +12,7 @@
         {% if printers %}
         <ul>
             {% for printer in printers %}
-                <!--{%if printer.status.find("ready")==-1 %}--!>
+                {%if printer.status %}
                     <li> <font color="red">{{printer.name}} </font></li>
                 <!--{%else%}
                     <li> <font color="green">{{printer.name}} </font></li>--!>
