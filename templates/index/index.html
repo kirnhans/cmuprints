@@ -13,9 +13,9 @@
         <ul>
             {% for printer in printers %}
                 {%if printer.status %}
-                    <li> <font color="red">{{printer.name}} </font></li>
-                {%else%}
                     <li> <font color="green">{{printer.name}} </font></li>
+                {%else%}
+                    <li> <font color="red">{{printer.name}} </font></li>
                 <!--need to get Jenna and Clark to place these on the map--!>
                 {% endif %}
             {% endfor %}
