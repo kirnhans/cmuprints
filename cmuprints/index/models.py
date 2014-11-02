@@ -9,7 +9,7 @@ printerList = getPrinterList()
 
 
 class PrinterList(models.Model):
-    plist=[]
+    plist=printerList
 
 Printers = PrinterList()
 

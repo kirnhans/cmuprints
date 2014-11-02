@@ -1,0 +1,1 @@
+web: gunicorn cmuprints.cmuprints.wsgi --log-file -
