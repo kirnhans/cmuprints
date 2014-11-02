@@ -1,1 +1,1 @@
-web: gunicorn cmuprints.cmuprints.wsgi --log-file -
+web: python manage.py run_gunicorn

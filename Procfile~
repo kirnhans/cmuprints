@@ -1,1 +1,1 @@
-web: gunicorn cmuprints/cmuprints.wsgi --log-file -
+web: gunicorn cmuprints.wsgi --log-file -
