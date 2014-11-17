@@ -19,6 +19,7 @@ class Printer(object):
             self.name = "Name Error"
         else:
             name = name[start+2:]
+            self.id = name.replace(" ", "")
             if name.endswith("B&W"):
                 self.name = name[:len(name)-len(" B&W")]
                 self.color = False
@@ -27,7 +28,7 @@ class Printer(object):
                 self.color = True
 
     def __repr__(self):
-        return "%s: %s (%s)" % (self.name, self.icon, self.error)
+        return "%s (%s): %s (%s)" % (self.name, self.id, self.icon, self.error)
 
     def __eq__(self, other):
         if isinstance(other, Printer):
