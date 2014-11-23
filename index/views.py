@@ -21,3 +21,13 @@ def index(request):
 def about(request):
     context=RequestContext(request)
     return rtr('index/about.html',{},context)
+
+def printers(request):
+    context=RequestContext(request)
+    printer_list = PrinterList.plist
+    printerDict = {}
+
+    for printer in printer_list:
+        printerDict[printer.id] = printer
+
+    return HttpResponse(json.dumps(printerDict, default=lambda o: o.__dict__, sort_keys=True, indent=4), content_type="application/json")
