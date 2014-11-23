@@ -14,7 +14,7 @@ var Printer = function (id, printerName, x, y) {
 var printer_info = undefined;
 $.getJSON("/index/printers/", function( data ) {
   	printer_info = data;
-  	addPrintersIcons();
+  	update_icons();
   	addPopovers();
 });
 var printers = [
@@ -71,6 +71,8 @@ var map = document.getElementById('map');
 window.onresize = updatePrinterIconHeights;
 window.onload = updatePrinterIconHeights;
 
+addPrintersIcons();
+
 function updatePrinterIconHeights() {
 	for (var i = printers.length - 1; i >= 0; i--) {
 		var icon = document.getElementById(get_icon_id(printers[i].id));
@@ -82,6 +84,7 @@ function get_icon_id(id) {
 	return id.replace(/&/g,"") + "_icon";
 }
 function get_icon(printer_id) {
+	if(printer_info === undefined) return "/static/images/bad.png";
 	var printer_list = [];
 	var good = true;
 	switch(printer_id) {
@@ -125,7 +128,7 @@ function addPrintersIcons() {
 		var icon = document.createElement("img");
 		icon.setAttribute("class", "printer");
 		icon.setAttribute("id", get_icon_id(printers[i].id));
-		icon.setAttribute("src", get_icon(printers[i].id));
+		icon.setAttribute("src", "/static/images/good.png");
 		icon.setAttribute("data-toggle", "popover");
 		icon.setAttribute("data-trigger", "focus");
 		icon.setAttribute("tabindex", i + "");
@@ -185,6 +188,13 @@ function popoverPlacement(id) {
 		default:
 			return "top";
 	}
+}
+function update_icons() {
+	for (var i = printers.length - 1; i >= 0; i--) {
+		var icon = document.getElementById(get_icon_id(printers[i].id));
+		icon.src = get_icon(printers[i].id);
+		//icon.style.top = Math.round((map.clientHeight/image_base_height) * (printers[i].y - (icon_height/2) + nav_bar_offset)) + "px";
+	};
 }
 function addPopovers() {
 	for (var i = printers.length - 1; i >= 0; i--) {
