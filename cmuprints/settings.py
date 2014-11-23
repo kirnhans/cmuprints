@@ -7,10 +7,13 @@ TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
-STATIC_PATH = os.path.join(PROJECT_PATH,'static')
 STATIC_URL = "/static/"
 
-DEBUG = True
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
