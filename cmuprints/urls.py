@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^index/', include('index.urls')),
     url(r'^$', include('index.urls')),
-    url(r'^about/',include('index.urls'))
+    url(r'^about/',include('index.urls')),
+    url(r'^printers/', include('index.urls'))
 )

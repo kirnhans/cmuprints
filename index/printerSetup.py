@@ -69,6 +69,7 @@ def getInfo():
         str_info += line
     return str_info
 
+
 class MyDecoder(json.JSONDecoder):
     def __init__(self):
         json.JSONDecoder.__init__(self, object_hook=self.dict_to_object)
