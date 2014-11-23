@@ -82,6 +82,42 @@ function updatePrinterIconHeights() {
 function get_icon_id(id) {
 	return id.replace(/&/g,"") + "_icon";
 }
+function get_icon(printer_id) {
+	var printer_list = [];
+	var good = true;
+	switch(printer_id) {
+		//Groups are special
+		case "Hammerschlag":
+			printer_list = ["ECE1B&W", "ECE2B&W", "ECE3B&W", "ECE4B&W"];
+			good = false;
+			break;
+		case "Hunt":
+			good = false;
+			printer_list = ["HuntB&W", "Hunt1Ref2B&W", "Hunt2B&W", "Hunt3B&W", "Hunt4ArtsB&W", "Hunt4ArtsColor", "Hunt4MusicB&W"];
+			break;
+		case "INIHS":
+			good = false;
+			printer_list = ["Sorrells1B&W", "Sorrells2B&W", "Sorrells3Color"];
+			break;
+		case "Sorrels":
+			good = false;
+			printer_list = ["Sorrells1B&W", "Sorrells2B&W", "Sorrells3Color"];
+			break;
+		default: 
+			if(printer_info[printer_id].icon == "not working") {
+				good = false;
+			}
+			break;
+	}
+	for(var i = printer_list.length - 1; i >= 0; i--) {
+		if(printer_info[printer_id].icon != "not working") {
+			good = true;
+		}			
+	}
+	if(good) return "/static/images/good.png";
+	return "/static/images/bad.png";
+
+}
 function addPrintersIcons() {
 
 	var printer_div = document.getElementById("printer_container");
@@ -90,7 +126,7 @@ function addPrintersIcons() {
 		var icon = document.createElement("img");
 		icon.setAttribute("class", "printer");
 		icon.setAttribute("id", get_icon_id(printers[i].id));
-		icon.setAttribute("src", "static/images/good.png");
+		icon.setAttribute("src", get_icon(printer_id));
 		icon.setAttribute("data-toggle", "popover");
 		icon.setAttribute("data-trigger", "focus");
 		icon.setAttribute("tabindex", i + "");
