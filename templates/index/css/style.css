@@ -1,0 +1,16 @@
+body {
+	  padding-top: 50px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+#test {
+    position: absolute;
+    top: 30%;
+    left: 25%;
+}
+.printer {
+	position: absolute;
+}
