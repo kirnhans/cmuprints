@@ -14,6 +14,7 @@ var Printer = function (id, printerName, x, y) {
 var printer_info = undefined;
 $.getJSON("/index/printers/", function( data ) {
   	printer_info = data;
+  	addPrintersIcons();
   	addPopovers();
 });
 var printers = [
@@ -69,8 +70,6 @@ var printers = [
 var map = document.getElementById('map');
 window.onresize = updatePrinterIconHeights;
 window.onload = updatePrinterIconHeights;
-
-addPrintersIcons();
 
 function updatePrinterIconHeights() {
 	for (var i = printers.length - 1; i >= 0; i--) {
