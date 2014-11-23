@@ -12,7 +12,7 @@ var Printer = function (id, printerName, x, y) {
 	this.y = y;
 }
 var printer_info = undefined;
-$.getJSON("http://127.0.0.1:8000/index/printers/", function( data ) {
+$.getJSON("/index/printers/", function( data ) {
   	printer_info = data;
   	addPopovers();
 });
