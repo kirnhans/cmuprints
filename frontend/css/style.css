@@ -2,7 +2,7 @@ body {
 	  padding-top: 50px;
 }
 img {
-    max-width: 100%;
+    max-width: 200%
     height: auto;
     width: auto\9; /* ie8 */
 }
