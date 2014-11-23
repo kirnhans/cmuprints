@@ -29,7 +29,9 @@
         </div>
     </nav>
 
-      <img id="map" src="images/map.png">
+      <!--<img id="map" src="images/map.png">-->
+      {% load staticfiles %}
+      <img src="{% static "map.png" %}" alt="My image"/ width=1000>
       <div id="printer_container">
       </div>
   </body>
