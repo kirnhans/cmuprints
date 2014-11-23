@@ -19,3 +19,6 @@ urlpatterns = patterns('',
     url(r'^about/',include('index.urls')),
     url(r'^printers/', include('index.urls'))
 )
+urlpatterns += patterns('',
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+)
