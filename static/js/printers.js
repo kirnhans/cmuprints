@@ -112,7 +112,7 @@ function get_icon(printer_id) {
 			break;
 	}
 	for(var i = printer_list.length - 1; i >= 0; i--) {
-		if(printer_info[printer_id].icon != "not working") {
+		if(printer_info[printer_list[i]].icon != "not working") {
 			good = true;
 		}			
 	}
