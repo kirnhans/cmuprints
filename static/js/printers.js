@@ -145,7 +145,7 @@ function getPopoverContent(id) {
 		case "Hunt":
 			return printerGroupData(["HuntB&W", "Hunt1Ref2B&W", "Hunt2B&W", "Hunt3B&W", "Hunt4ArtsB&W", "Hunt4ArtsColor", "Hunt4MusicB&W"]);
 		case "INIHS":
-			return printerGroupData(["Sorrells1B&W", "Sorrells2B&W", "Sorrells3Color"]);
+			return printerGroupData(["INIHS1B&W", "INIHS2B&W", "INIHSBB&W"]);
 		case "Sorrels":
 			return printerGroupData(["Sorrells1B&W", "Sorrells2B&W", "Sorrells3Color"]);
 		default: 
