@@ -69,6 +69,7 @@ function updatePrinterIconHeights() {
 
 		icon.style.top = Math.round((map.clientHeight/image_base_height) * (printers[i].y - (icon_height/2) + nav_bar_offset)) + "px";
 	};
+	map.style.width = "100%";
 }
 function get_icon_id(id) {
 	return id + "_icon";
