@@ -126,7 +126,7 @@ function addPrintersIcons() {
 		var icon = document.createElement("img");
 		icon.setAttribute("class", "printer");
 		icon.setAttribute("id", get_icon_id(printers[i].id));
-		icon.setAttribute("src", get_icon(printer_id));
+		icon.setAttribute("src", get_icon(printers[i].id));
 		icon.setAttribute("data-toggle", "popover");
 		icon.setAttribute("data-trigger", "focus");
 		icon.setAttribute("tabindex", i + "");
