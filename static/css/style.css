@@ -14,3 +14,7 @@ body {
 	cursor: pointer;
 	position: absolute;
 }
+.popover-content {
+   max-height: 150px;
+   overflow-y: scroll;
+}
