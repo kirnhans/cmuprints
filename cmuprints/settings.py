@@ -6,8 +6,8 @@ PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_PATH, 'staticfiles')
-STATIC_PATH = 'staticfiles'
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
+STATIC_PATH = 'static'
 STATIC_URL = "/static/"
 
 DEBUG = True
