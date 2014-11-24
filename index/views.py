@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response as rtr
 from models import *
-from printerSetup import getPrinterList
 
 def index(request):
     # Request the context of the request.
@@ -11,7 +10,7 @@ def index(request):
     context = RequestContext(request)
 
     # Construct a dictionary to pass to the template engine as its context.
-    printer_list = getPrinterList()
+    printer_list = PrinterList.plist
     context_dict = {'printers':printer_list}
 
     # Return a rendered response to send to the client.
@@ -25,7 +24,7 @@ def about(request):
 
 def printers(request):
     context=RequestContext(request)
-    printer_list = getPrinterList()
+    printer_list = PrinterList.plist
     printerDict = {}
 
     for printer in printer_list:
