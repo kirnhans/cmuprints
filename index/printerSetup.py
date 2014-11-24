@@ -19,7 +19,6 @@ class Printer(object):
             self.name = "Name Error"
         else:
             name = name[start+2:]
-            self.fullName = name
             self.id = name.replace(" ", "")
             if name.endswith("B&W"):
                 self.name = name[:len(name)-len(" B&W")]
