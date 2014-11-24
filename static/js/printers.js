@@ -12,8 +12,9 @@ var Printer = function (id, printerName, x, y) {
 	this.y = y;
 }
 var printer_info = undefined;
-$.getJSON("http://127.0.0.1:8000/index/printers/", function( data ) {
+$.getJSON("/index/printers/", function( data ) {
   	printer_info = data;
+  	update_icons();
   	addPopovers();
 });
 var printers = [
@@ -82,6 +83,43 @@ function updatePrinterIconHeights() {
 function get_icon_id(id) {
 	return id.replace(/&/g,"") + "_icon";
 }
+function get_icon(printer_id) {
+	if(printer_info === undefined) return "/static/images/bad.png";
+	var printer_list = [];
+	var good = true;
+	switch(printer_id) {
+		//Groups are special
+		case "Hammerschlag":
+			printer_list = ["ECE1B&W", "ECE2B&W", "ECE3B&W", "ECE4B&W"];
+			good = false;
+			break;
+		case "Hunt":
+			good = false;
+			printer_list = ["HuntB&W", "Hunt1Ref2B&W", "Hunt2B&W", "Hunt3B&W", "Hunt4ArtsB&W", "Hunt4ArtsColor", "Hunt4MusicB&W"];
+			break;
+		case "INIHS":
+			good = false;
+			printer_list = ["Sorrells1B&W", "Sorrells2B&W", "Sorrells3Color"];
+			break;
+		case "Sorrels":
+			good = false;
+			printer_list = ["Sorrells1B&W", "Sorrells2B&W", "Sorrells3Color"];
+			break;
+		default: 
+			if(printer_info[printer_id].icon == "not working") {
+				good = false;
+			}
+			break;
+	}
+	for(var i = printer_list.length - 1; i >= 0; i--) {
+		if(printer_info[printer_list[i]].icon != "not working") {
+			good = true;
+		}			
+	}
+	if(good) return "/static/images/good.png";
+	return "/static/images/bad.png";
+
+}
 function addPrintersIcons() {
 
 	var printer_div = document.getElementById("printer_container");
@@ -90,7 +128,7 @@ function addPrintersIcons() {
 		var icon = document.createElement("img");
 		icon.setAttribute("class", "printer");
 		icon.setAttribute("id", get_icon_id(printers[i].id));
-		icon.setAttribute("src", "static/images/good.png");
+		icon.setAttribute("src", "/static/images/good.png");
 		icon.setAttribute("data-toggle", "popover");
 		icon.setAttribute("data-trigger", "focus");
 		icon.setAttribute("tabindex", i + "");
@@ -107,7 +145,7 @@ function getPopoverContent(id) {
 		case "Hunt":
 			return printerGroupData(["HuntB&W", "Hunt1Ref2B&W", "Hunt2B&W", "Hunt3B&W", "Hunt4ArtsB&W", "Hunt4ArtsColor", "Hunt4MusicB&W"]);
 		case "INIHS":
-			return printerGroupData(["Sorrells1B&W", "Sorrells2B&W", "Sorrells3Color"]);
+			return printerGroupData(["INIHS1B&W", "INIHS2B&W", "INIHSBB&W"]);
 		case "Sorrels":
 			return printerGroupData(["Sorrells1B&W", "Sorrells2B&W", "Sorrells3Color"]);
 		default: 
@@ -118,7 +156,7 @@ function printerGroupData(list) {
 	var str = "";
 	for (var i = list.length - 1; i >= 0; i--) {
 		str += "<strong>";
-		str += printer_info[list[i]].fullName;
+		str += printer_info[list[i]].name;
 		str += "</strong></br>";
 		str += printer_info[list[i]].icon;
 
@@ -150,6 +188,13 @@ function popoverPlacement(id) {
 		default:
 			return "top";
 	}
+}
+function update_icons() {
+	for (var i = printers.length - 1; i >= 0; i--) {
+		var icon = document.getElementById(get_icon_id(printers[i].id));
+		icon.src = get_icon(printers[i].id);
+		//icon.style.top = Math.round((map.clientHeight/image_base_height) * (printers[i].y - (icon_height/2) + nav_bar_offset)) + "px";
+	};
 }
 function addPopovers() {
 	for (var i = printers.length - 1; i >= 0; i--) {
