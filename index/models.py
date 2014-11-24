@@ -10,9 +10,6 @@ printerList = getPrinterList()
 
 class PrinterList(models.Model):
     plist=printerList
-    def getPlist(self):
-        plist = getPrinterList()
-        return plist
 
 Printers = PrinterList()
 
@@ -22,6 +19,10 @@ def getInfo():
     for line in info:
         str_info += line
     return str_info
+
+def updateData():
+    encoded_object = getInfo()
+    myobj_instance = MyDecoder().decode(encoded_object)
 
 class Printer(object):
     def __init__(self, name):
