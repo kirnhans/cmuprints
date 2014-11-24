@@ -10,6 +10,7 @@ def index(request):
     context = RequestContext(request)
 
     # Construct a dictionary to pass to the template engine as its context.
+    #updateData()
     printer_list = PrinterList.plist
     context_dict = {'printers':printer_list}
 
@@ -24,6 +25,7 @@ def about(request):
 
 def printers(request):
     context=RequestContext(request)
+
     printer_list = PrinterList.plist
     printerDict = {}
 

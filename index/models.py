@@ -5,14 +5,8 @@ import json
 import string
 from printerSetup import getPrinterList
 
-printerList = getPrinterList()
-
-
 class PrinterList(models.Model):
     plist=printerList
-    def getPlist(self):
-        plist = getPrinterList()
-        return plist
 
 Printers = PrinterList()
 
@@ -22,6 +16,10 @@ def getInfo():
     for line in info:
         str_info += line
     return str_info
+
+def updateData():
+    encoded_object = getInfo()
+    myobj_instance = MyDecoder().decode(encoded_object)
 
 class Printer(object):
     def __init__(self, name):
@@ -39,10 +37,10 @@ class Printer(object):
             name = name[start+2:]
             self.name = name
             if name.endswith("B&W"):
-                #self.name = name[:len(name)-len("B&W")]
+                self.name = name[:len(name)-len("B&W")]
                 self.color = False
             else:
-                #self.name = name[:len(name)-len("Color")]
+                self.name = name[:len(name)-len("Color")]
                 self.color = True
 
     def __repr__(self):
