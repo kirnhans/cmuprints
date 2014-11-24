@@ -10,12 +10,8 @@ def index(request):
     context = RequestContext(request)
 
     # Construct a dictionary to pass to the template engine as its context.
-<<<<<<< HEAD
     updateData()
     printer_list = printerList
-=======
-    printer_list = Printers.getPlist()
->>>>>>> d2fe5da40d3080d1be02ec3f0c1d95107188a26e
     context_dict = {'printers':printer_list}
 
     # Return a rendered response to send to the client.
