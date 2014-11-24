@@ -5,9 +5,6 @@ import json
 import string
 from printerSetup import getPrinterList
 
-printerList = getPrinterList()
-
-
 class PrinterList(models.Model):
     plist=printerList
 
