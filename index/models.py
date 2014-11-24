@@ -10,7 +10,7 @@ printerList = getPrinterList()
 
 class PrinterList(models.Model):
     plist=printerList
-    def getPlist():
+    def getPlist(self):
         plist = getPrinterList()
         return plist
 
