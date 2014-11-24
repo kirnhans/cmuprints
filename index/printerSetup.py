@@ -12,6 +12,7 @@ class Printer(object):
         self.status = None
         self.error = None
         self.icon = None
+        self.time = None
 
     def parseName(self, name):
         start = name.find('-')
@@ -21,15 +22,10 @@ class Printer(object):
             name = name[start+2:]
             self.name = name
             self.id = name.replace(" ", "")
-            if name.endswith("B&W"):
-                #self.name = name[:len(name)-len(" B&W")]
-                self.color = False
-            else:
-                #self.name = name[:len(name)-len(" Color")]
-                self.color = True
+            self.color = name.endswith("Color")
 
     def __repr__(self):
-        return "%s (%s): %s (%s)" % (self.name, self.id, self.icon, self.error)
+        return "%s (%s): %s (%s) as of %s" % (self.name, self.id, self.icon, self.error, self.time)
 
     def __eq__(self, other):
         if isinstance(other, Printer):
@@ -63,12 +59,17 @@ class Printer(object):
     def getErrorMessage(self):
         return self.error
 
+    def setTime(self, time):
+        self.time = time
+
+    def getTime(self):
+        return self.time
+
 def getInfo():
-    info = urllib2.urlopen('http://198.211.113.33:3000/printers')
-    str_info = ''
-    for line in info:
-        str_info += line
-    return str_info
+    req = urllib2.Request('http://198.211.113.33:3000/printers')
+    response = urllib2.urlopen(req)
+    the_page = response.read()
+    return the_page
 
 
 class MyDecoder(json.JSONDecoder):

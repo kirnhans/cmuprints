@@ -11,7 +11,8 @@ def index(request):
 
     # Construct a dictionary to pass to the template engine as its context.
     #updateData()
-    printer_list = PrinterList.plist
+    Printers.updateData()
+    printer_list = Printers.plist
     context_dict = {'printers':printer_list}
 
     # Return a rendered response to send to the client.
@@ -26,7 +27,7 @@ def about(request):
 def printers(request):
     context=RequestContext(request)
 
-    printer_list = PrinterList.plist
+    printer_list = Printers.plist
     printerDict = {}
 
     for printer in printer_list:
