@@ -106,13 +106,13 @@ function get_icon(printer_id) {
 			printer_list = ["Sorrells1B&W", "Sorrells2B&W", "Sorrells3Color"];
 			break;
 		default: 
-			if(printer_info[printer_id].icon == "not working") {
+			if(printer_info[printer_id].icon == "Not working") {
 				good = false;
 			}
 			break;
 	}
 	for(var i = printer_list.length - 1; i >= 0; i--) {
-		if(printer_info[printer_list[i]].icon != "not working") {
+		if(printer_info[printer_list[i]].icon != "Not working") {
 			good = true;
 		}			
 	}
