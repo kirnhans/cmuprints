@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response as rtr
 from models import *
+from printerSetup import getPrinterList
 
 def index(request):
     # Request the context of the request.
