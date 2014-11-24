@@ -6,7 +6,6 @@ printerList = []
 
 class Printer(object):
     def __init__(self, name):
-        self.fullName = name
         self.parseName(name)
         self.location = "TBD"
         self.status = None
@@ -19,6 +18,7 @@ class Printer(object):
             self.name = "Name Error"
         else:
             name = name[start+2:]
+            self.fullName = name
             self.id = name.replace(" ", "")
             if name.endswith("B&W"):
                 self.name = name[:len(name)-len(" B&W")]
@@ -38,11 +38,11 @@ class Printer(object):
         
     def setIcon(self, msg):
         if msg == "go.gif":
-            status = "available"
+            status = "Available"
         elif msg == "yield.gif":
-            status = "warning"
+            status = "Warning"
         elif msg == "stop.gif":
-            status = "not working"
+            status = "Not working"
         else:
             status = "unknown"
         self.icon = status
