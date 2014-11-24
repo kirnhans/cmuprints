@@ -25,6 +25,7 @@ def getInfo():
 
 class Printer(object):
     def __init__(self, name):
+        self.fullName = name
         self.parseName(name)
         self.status = None
         self.error = None
@@ -36,11 +37,12 @@ class Printer(object):
             self.name = "Name Error"
         else:
             name = name[start+2:]
+            self.name = name
             if name.endswith("B&W"):
-                self.name = name[:len(name)-len("B&W")]
+                #self.name = name[:len(name)-len("B&W")]
                 self.color = False
             else:
-                self.name = name[:len(name)-len("Color")]
+                #self.name = name[:len(name)-len("Color")]
                 self.color = True
 
     def __repr__(self):
