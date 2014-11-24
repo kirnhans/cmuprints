@@ -156,7 +156,7 @@ function printerGroupData(list) {
 	var str = "";
 	for (var i = list.length - 1; i >= 0; i--) {
 		str += "<strong>";
-		str += printer_info[list[i]].fullName;
+		str += printer_info[list[i]].name;
 		str += "</strong></br>";
 		str += printer_info[list[i]].icon;
 
