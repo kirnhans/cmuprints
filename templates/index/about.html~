@@ -1,9 +1,32 @@
+<DOCTYPE html>
 <html>
-<head>
-        <title>About</title>
-    </head>
-    <body>
-        <center> <font face="Times New Roman"> Project by Kim Kleiven,
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <title>CMU Prints | About</title>
+  </head>
+  <body>
+   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="http://wat.google.com"><img src="/static/images/logo.png"/></a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav" role="menu">
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="index/about">About</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+        <center> Project by Kim Kleiven,
                 Jenna Choo, Clark Chen and Kirn Hans</font></center>
         <br>
         <center>
@@ -11,7 +34,9 @@
         <img src = {% static "Kim.jpg" %} width=275 alt_text="Kim">
         <img src = {% static "Jenna.jpg" %} width=150>
         <img src = {% static "Clark.jpg" %} width=150>
-        <img src = {% static "Kirn.jpg" %} width=150><br>
+        <img src = {% static "Kirn.jpg" %} width=150><br><br>
+	<font face="Calibri">This is a project for 15-221: Technical Communications for Computer Scientists, Fall 2014.<br><br>
+	  Each icon represents a printer or a group of printers in the appropriate campus location - green for a working printer, red for a broken printer. <br>Click on the icon for more information.</font> 
         </center>
     </body>
 </html>
