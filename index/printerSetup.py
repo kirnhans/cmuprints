@@ -19,12 +19,13 @@ class Printer(object):
             self.name = "Name Error"
         else:
             name = name[start+2:]
+            self.name = name
             self.id = name.replace(" ", "")
             if name.endswith("B&W"):
-                self.name = name[:len(name)-len(" B&W")]
+                #self.name = name[:len(name)-len(" B&W")]
                 self.color = False
             else:
-                self.name = name[:len(name)-len(" Color")]
+                #self.name = name[:len(name)-len(" Color")]
                 self.color = True
 
     def __repr__(self):
@@ -38,11 +39,11 @@ class Printer(object):
         
     def setIcon(self, msg):
         if msg == "go.gif":
-            status = "available"
+            status = "Available"
         elif msg == "yield.gif":
-            status = "warning"
+            status = "Warning"
         elif msg == "stop.gif":
-            status = "not working"
+            status = "Not working"
         else:
             status = "unknown"
         self.icon = status
